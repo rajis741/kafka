@@ -40,14 +40,17 @@ public class QuorumControllerMetricsTest {
             try (QuorumControllerMetrics metrics = new QuorumControllerMetrics(Optional.of(registry), time)) {
                 ControllerMetricsTestUtils.assertMetricsForTypeEqual(registry, "kafka.controller",
                     new HashSet<>(Arrays.asList(
-                        "kafka.controller:type=ControllerEventManager,name=EventQueueTimeMs",
                         "kafka.controller:type=ControllerEventManager,name=EventQueueProcessingTimeMs",
+                        "kafka.controller:type=ControllerEventManager,name=EventQueueTimeMs",
                         "kafka.controller:type=KafkaController,name=ActiveControllerCount",
-                        "kafka.controller:type=KafkaController,name=LastCommittedRecordOffset",
+                        "kafka.controller:type=KafkaController,name=EventQueueOperationsStartedCount",
+                        "kafka.controller:type=KafkaController,name=EventQueueOperationsTimedOutCount",
                         "kafka.controller:type=KafkaController,name=LastAppliedRecordLagMs",
                         "kafka.controller:type=KafkaController,name=LastAppliedRecordOffset",
                         "kafka.controller:type=KafkaController,name=LastAppliedRecordTimestamp",
-                        "kafka.controller:type=KafkaController,name=LastAppliedRecordOffset"
+                        "kafka.controller:type=KafkaController,name=LastCommittedRecordOffset",
+                        "kafka.controller:type=KafkaController,name=NewActiveControllersCount",
+                        "kafka.controller:type=KafkaController,name=TimedOutBrokerHeartbeatCount"
                     )));
             }
             ControllerMetricsTestUtils.assertMetricsForTypeEqual(registry, "kafka.controller",
